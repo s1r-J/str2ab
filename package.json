@@ -1,6 +1,6 @@
 {
   "name": "str2ab",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "",
   "main": "index.js",
   "types": "./dist/str2ab.d.ts",
@@ -16,19 +16,20 @@
   "keywords": [
     "string",
     "ArrayBuffer",
-    "base64url"
+    "base64url",
+    "buffer"
   ],
   "author": "s1r-J",
   "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/s1r-J/str2ab.git"
-},
-"bugs": {
+  },
+  "bugs": {
     "url": "https://github.com/s1r-J/str2ab/issues"
-},
-"homepage": "https://github.com/s1r-J/str2ab#readme",
-"dependencies": {
+  },
+  "homepage": "https://github.com/s1r-J/str2ab#readme",
+  "dependencies": {
     "base64url": "^3.0.1"
   },
   "devDependencies": {
