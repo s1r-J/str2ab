@@ -1,20 +1,25 @@
 import base64url from 'base64url';
 
 function string2arraybuffer(str: string): ArrayBuffer {
-  let buf = new ArrayBuffer(str.length * 2); // 2 bytes for each char
-  let bufView = new Uint16Array(buf);
-  for (let i = 0, strLen = str.length; i < strLen; i++) {
-      bufView[i] = str.charCodeAt(i);
+  const buf = new ArrayBuffer(str.length * 2); // 2 bytes for each char
+  const bufView = new Uint16Array(buf);
+  for (let i = 0; i < str.length; i++) {
+    bufView[i] = str.charCodeAt(i);
   }
   
   return buf;
 }
 
 function arraybuffer2string(ab: ArrayBuffer): string {
-  const u16arr = new Uint16Array(ab);
+  let uarr;
+  if (ab.byteLength % 2 === 0) {
+    uarr = new Uint16Array(ab);
+  } else {
+    uarr = new Uint8Array(ab);
+  }
   let str = '';
-  for (let i = 0; i < u16arr.length; i++) {
-    str += String.fromCharCode(u16arr[i]);
+  for (let i = 0; i < uarr.length; i++) {
+    str += String.fromCharCode(uarr[i]);
   }
 
   return str;

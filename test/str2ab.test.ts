@@ -9,7 +9,15 @@ test('string <--> ArrayBuffer', function (t) {
   const ab = str2ab.string2arraybuffer(str);
   t.type(ab, 'ArrayBuffer');
   const str2 = str2ab.arraybuffer2string(ab);
-  t.equal(str, str2);
+  t.equal(str2, str);
+  t.end();
+});
+
+test('Uint8 <--> ArrayBuffer', function (t) {
+  const str = '*';
+  const ab = Uint8Array.from(Buffer.from(str));
+  const str2 = str2ab.arraybuffer2string(ab);
+  t.equal(str2, str);
   t.end();
 });
 
@@ -18,7 +26,7 @@ test('multi byte string <--> ArrayBuffer', function (t) {
   const ab = str2ab.string2arraybuffer(str);
   t.type(ab, 'ArrayBuffer');
   const str2 = str2ab.arraybuffer2string(ab);
-  t.equal(str, str2);
+  t.equal(str2, str);
   t.end();
 });
 
@@ -27,7 +35,22 @@ test('base64url <--> ArrayBuffer', function (t) {
   const ab = str2ab.base64url2arraybuffer(b64u);
   t.type(ab, 'ArrayBuffer');
   const b64u2 = str2ab.arraybuffer2base64url(ab);
-  t.equal(b64u, b64u2);
+  t.equal(b64u2, b64u);
+  t.end();
+});
+
+test('string <--> ArrayBuffer <--> base64url', function (t) {
+  const str = '{"challenge":"uVX88IgRa0SSrMIRT_q7cRcdfgfRBxCgn_pkpUAnXJK2zOb307wd1OLXQ0AuNaMtBR3amk6HYzp-_VxJTPpwGw","origin":"https://webauthn.org","tokenBinding":{"status":"not-supported"},"type":"webauthn.create"}';
+  const ab = str2ab.string2arraybuffer(str);
+  t.type(ab, 'ArrayBuffer');
+  const b64u = str2ab.arraybuffer2base64url(ab);
+  t.type(b64u, 'string');
+  const ab2 = str2ab.base64url2arraybuffer(b64u);
+  t.type(ab2, 'ArrayBuffer');
+  t.equal(ab2.byteLength, ab.byteLength);
+  const str2 = str2ab.arraybuffer2string(ab2);
+  t.type(str2, 'string');
+  t.same(str2, str);
   t.end();
 });
 
@@ -36,7 +59,7 @@ test('base64 <--> ArrayBuffer', function (t) {
   const ab = str2ab.base642arraybuffer(b64);
   t.type(ab, 'ArrayBuffer');
   const b642 = str2ab.arraybuffer2base64(ab);
-  t.equal(b64, b642);
+  t.equal(b642, b64);
   t.end();
 });
 
@@ -45,6 +68,6 @@ test('buffer <--> ArrayBuffer', function (t) {
   const ab = str2ab.buffer2arraybuffer(buf);
   t.type(ab, 'ArrayBuffer');
   const buf2 = str2ab.arraybuffer2buffer(ab);
-  t.same(buf, buf2);
+  t.same(buf2, buf);
   t.end();
 });
