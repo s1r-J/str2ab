@@ -1,6 +1,6 @@
 {
   "name": "str2ab",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "description": "",
   "main": "index.js",
   "types": "./dist/str2ab.d.ts",
