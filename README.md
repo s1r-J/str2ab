@@ -1,12 +1,14 @@
 # str2ab
 
-Convert between string (including base64 and base64url) and ArrayBuffer.
+[![npm version](https://badge.fury.io/js/str2ab.svg)](https://badge.fury.io/js/str2ab) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+Convert between string (including base64 and base64url), ArrayBuffer and Buffer.
 
 ## Usage
 
 ESM
 
-```
+```javascript
 import str2ab from 'str2ab';
 
 str2ab.string2arraybuffer('this is sample.');
@@ -14,7 +16,7 @@ str2ab.string2arraybuffer('this is sample.');
 
 CommonJS
 
-```
+```javascript
 const str2ab = require('str2ab');
 
 str2ab.string2arraybuffer('this is sample.');
