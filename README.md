@@ -131,6 +131,16 @@ str2ab.string2arraybuffer('this is sample.');
 
 - Returns Base64 encoded **string**
 
+### isBase64url(string)
+
+- When input parameter is Base64 URL encoded string, returns true.
+- Otherwise returns false.
+
+### isBase64url(string)
+
+- When input parameter is Base64 encoded string, returns true.
+- Otherwise returns false.
+
 ## Install
 
 [npm](https://www.npmjs.com/package/str2ab)

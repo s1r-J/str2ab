@@ -99,6 +99,15 @@ function arraybuffer2buffer(ab: ArrayBuffer): Buffer {
   return Buffer.from(ab);
 }
 
+function isBase64url(input: string): boolean {
+  return /^[A-Za-z0-9-_]+$/.test(input);
+}
+
+function isBase64(input: string): boolean {
+  return /^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$/.test(input);
+}
+
+
 const str2ab = {
   string2arraybuffer,
   string2base64url,
@@ -120,6 +129,8 @@ const str2ab = {
   base642buffer,
   buffer2arraybuffer,
   arraybuffer2buffer,
+  isBase64url,
+  isBase64,
 };
 
 export default str2ab;
