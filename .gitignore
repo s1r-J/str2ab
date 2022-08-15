@@ -106,3 +106,6 @@ typings/
 # gitkeep
 dist/*
 !dist/.gitkeep
+
+# vscode
+.vscode/

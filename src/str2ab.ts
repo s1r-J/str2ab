@@ -6,7 +6,7 @@ function string2arraybuffer(str: string): ArrayBuffer {
   for (let i = 0; i < str.length; i++) {
     bufView[i] = str.charCodeAt(i);
   }
-  
+
   return buf;
 }
 
@@ -106,7 +106,6 @@ function isBase64url(input: string): boolean {
 function isBase64(input: string): boolean {
   return /^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$/.test(input);
 }
-
 
 const str2ab = {
   string2arraybuffer,
