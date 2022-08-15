@@ -23,13 +23,13 @@ str2ab.string2arraybuffer('this is sample.');
 
 ## API
 
-| From/To     | string | ArrayBuffer | base64url | base64 | Buffer |
+| From/To     | string | ArrayBuffer | Base64URL | Base64 | Buffer |
 | :----: | :----: | :----: | :----: | :----: | :----: |
-| string      | x | [1.1](#11-string2arraybufferstring) | [base64url](https://www.npmjs.com/package/base64url) | [base64url](https://www.npmjs.com/package/base64url) | [5.1](#51-string2bufferstring) |
-| ArrayBuffer | [1.2](#12-arraybuffer2stringarrayuffer) | x | [2.2](#22-arraybuffer2base64urlarraybuffer) | [3.2](#32-arraybuffer2base64arraybuffer) | [4.2](#42-arraybuffer2bufferarraybuffer) |
-| base64url   | [base64url](https://www.npmjs.com/package/base64url) | [2.1](#21-base64url2arraybufferstring) | x | [base64url](https://www.npmjs.com/package/base64url) | [6.1](#61-base64url2bufferstring) |
-| base64      | x | [3.1](#31-base642arraybufferstring) | [base64url](https://www.npmjs.com/package/base64url) | x | [7.1](#71-base642bufferstring) |
-| Buffer      | [5.2](#52-buffer2stringbuffer) | [4.1](#41-buffer2arraybufferbuffer) | [6.2](#62-buffer2base64buffer) | [7.2](#72-buffer2base64buffer) | x |
+| string      | x | [1.1](#11-string2arraybufferstring) | [2.1](#21-string2base64urlstring) | [3.1](#31-string2base64string) | [4.1](#41-string2bufferstring) |
+| ArrayBuffer | [1.2](#12-arraybuffer2stringarraybuffer) | x | [5.1](#51-arraybuffer2base64urlarraybuffer) | [6.1](#61-arraybuffer2base64arraybuffer) | [7.1](#71-arraybuffer2bufferarraybuffer) |
+| Base64URL   | [2.2](#22-base64url2stringstring) | [5.2](#52-base64url2arraybufferstring) | x | [8.1](#81-base64url2base64string) | [9.1](#91-base64url2bufferstring) |
+| Base64      | [3.2](#32-base642stringstring) | [6.2](#62-base642arraybufferstring) | [8.2](#82-base642base64urlstring) | x | [10.1](#101-base642bufferstring) |
+| Buffer      | [4.2](#42-buffer2stringbuffer) | [7.2](#72-buffer2arraybufferbuffer) | [9.2](#92-buffer2base64urlbuffer) | [10.2](#102-buffer2base64buffer) | x |
 
 ### 1. String <-> ArrayBuffer
 
@@ -41,65 +41,95 @@ str2ab.string2arraybuffer('this is sample.');
 
 - Returns **string**
 
-### 2. base64url <-> ArrayBuffer
+### 2. String <-> Base64URL
 
-#### 2.1 base64url2arraybuffer(string)
+#### 2.1 string2base64url(string)
+
+- Returns Base64URL encoded **string**
+
+#### 2.2 base64url2string(string)
+
+- Returns **string**
+
+### 3. String <-> Base64
+
+#### 3.1 string2base64(string)
+
+- Returns Base64 encoded **string**
+
+#### 3.2 base642string(string)
+
+- Returns **string**
+
+### 4. String <-> Buffer
+
+#### 4.1 string2buffer(string)
+
+- Returns **Buffer**
+
+#### 4.2 buffer2string(Buffer)
+
+- Returns **string**
+
+### 5. ArrayBuffer <-> Base64URL
+
+#### 5.1 arraybuffer2base64url(ArrayBuffer)
+
+- Returns Base64 URL encoded **string**
+
+#### 5.2 base64url2arraybuffer(string)
 
 - Returns **ArrayBuffer**
 
-#### 2.2 arraybuffer2base64url(ArrayBuffer)
+### 6. ArrayBuffer <-> Base64
 
-- Returns **string**
+#### 6.1 arraybuffer2base64(ArrayBuffer)
 
-### 3. base64 <-> ArrayBuffer
+- Returns Base64 encoded **string**
 
-#### 3.1 base642arraybuffer(string)
-
-- Returns **ArrayBuffer**
-
-#### 3.2 arraybuffer2base64(ArrayBuffer)
-
-- Returns **string**
-
-### 4. Buffer <-> ArrayBuffer
-
-#### 4.1 buffer2arraybuffer(Buffer)
+#### 6.2 base642arraybuffer(string)
 
 - Returns **ArrayBuffer**
 
-#### 4.2 arraybuffer2buffer(ArrayBuffer)
+### 7. ArrayBuffer <-> Buffer
+
+#### 7.1 arraybuffer2buffer(ArrayBuffer)
 
 - Returns **Buffer**
 
-### 5. String <-> Buffer
+#### 7.2 buffer2arraybuffer(Buffer)
 
-#### 5.1 string2buffer(string)
+- Returns **ArrayBuffer**
 
-- Returns **Buffer**
+### 8. Base64URL <-> Base64
 
-#### 5.2 buffer2string(Buffer)
+#### 8.1 base64url2base64(string)
 
-- Returns **string**
+- Returns Base64 encoded **string**
 
-#### 6. base64url <-> Buffer
+#### 8.2 base642base64url(string)
 
-#### 6.1 base64url2buffer(string)
+- Returns Base64 URL encoded **string**
 
-- Returns **Buffer**
+#### 9. Base64URL <-> Buffer
 
-#### 6.2 buffer2base64url(Buffer)
-
-- Returns **string**
-
-### 7. base64 <-> Buffer
-
-#### 7.1 base642buffer(string)
+#### 9.1 base64url2buffer(string)
 
 - Returns **Buffer**
 
-#### 7.2 buffer2base64(Buffer)
+#### 9.2 buffer2base64url(Buffer)
 
-- Returns **string**
+- Returns Base64 URL encoded **string**
+
+### 10. Base64 <-> Buffer
+
+#### 10.1 base642buffer(string)
+
+- Returns **Buffer**
+
+#### 10.2 buffer2base64(Buffer)
+
+- Returns Base64 encoded **string**
 
 ## Install
 
