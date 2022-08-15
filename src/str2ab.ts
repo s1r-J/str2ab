@@ -14,6 +14,14 @@ function string2buffer(str: string): Buffer {
   return Buffer.from(str);
 }
 
+function string2base64url(str: string): string {
+  return base64url.encode(str);
+}
+
+function string2base64(str: string): string {
+  return base64url.toBase64(base64url.encode(str));
+}
+
 function arraybuffer2string(ab: ArrayBuffer): string {
   let uarr;
   if (ab.byteLength % 2 === 0) {
@@ -42,6 +50,14 @@ function base64url2buffer(b64u: string): Buffer {
   return base64url.toBuffer(b64u);
 }
 
+function base64url2string(b64u: string): string {
+  return base64url.decode(b64u);
+}
+
+function base64url2base64(b64u: string): string {
+  return base64url.toBase64(b64u);
+}
+
 function arraybuffer2base64url(ab: ArrayBuffer): string {
   return base64url.encode(Buffer.from(ab), 'utf8');
 }
@@ -67,6 +83,14 @@ function base642buffer(base64: string): Buffer {
   return base64url.toBuffer(base64);
 }
 
+function base642string(base64: string): string {
+  return base64url.decode(base64url.fromBase64(base64));
+}
+
+function base642base64url(base64: string): string {
+  return base64url.fromBase64(base64);
+}
+
 function buffer2arraybuffer(buffer: Buffer): ArrayBuffer {
   return buffer.buffer.slice(buffer.byteOffset, buffer.byteOffset + buffer.byteLength);
 }
@@ -77,16 +101,22 @@ function arraybuffer2buffer(ab: ArrayBuffer): Buffer {
 
 const str2ab = {
   string2arraybuffer,
+  string2base64url,
+  string2base64,
   string2buffer,
   arraybuffer2string,
   buffer2string,
+  base64url2string,
   base64url2arraybuffer,
+  base64url2base64,
   base64url2buffer,
   arraybuffer2base64url,
   buffer2base64url,
   arraybuffer2base64,
   buffer2base64,
+  base642string,
   base642arraybuffer,
+  base642base64url,
   base642buffer,
   buffer2arraybuffer,
   arraybuffer2buffer,
