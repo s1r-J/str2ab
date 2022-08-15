@@ -1,6 +1,6 @@
 {
   "name": "str2ab",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "",
   "main": "index.js",
   "types": "./dist/str2ab.d.ts",
@@ -11,7 +11,8 @@
   "scripts": {
     "test": "npm run clean && npm run build && tap --ts",
     "clean": "rm -f dist/*",
-    "build": "tsc"
+    "build": "tsc",
+    "lint": "eslint"
   },
   "keywords": [
     "string",
@@ -35,6 +36,9 @@
   "devDependencies": {
     "@types/node": "^16.6.1",
     "@types/tap": "^15.0.5",
+    "eslint": "^8.22.0",
+    "eslint-config-prettier": "^8.5.0",
+    "prettier": "^2.7.1",
     "tap": "^15.0.9",
     "ts-node": "^10.2.0",
     "typescript": "^4.3.5"

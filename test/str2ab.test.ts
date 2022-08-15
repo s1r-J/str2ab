@@ -22,6 +22,26 @@ test('string <--> Buffer', function (t) {
   t.end();
 });
 
+test('string <--> base64url', function (t) {
+  const str = 'Being second is to be the first of the ones who lose.';
+  const b64u = str2ab.string2base64url(str);
+  t.type(b64u, 'string');
+  t.ok(/^[A-Za-z0-9-_]*$/.test(b64u))
+  const str2 = str2ab.base64url2string(b64u);
+  t.equal(str2, str);
+  t.end();
+})
+
+test('string <--> base64', function (t) {
+  const str = 'Being second is to be the first of the ones who lose.';
+  const b64 = str2ab.string2base64(str);
+  t.type(b64, 'string');
+  t.ok(/^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$/.test(b64))
+  const str2 = str2ab.base642string(b64);
+  t.equal(str2, str);
+  t.end();
+})
+
 test('Uint8 <--> ArrayBuffer', function (t) {
   const str = '*';
   const ab = Uint8Array.from(Buffer.from(str));
@@ -57,7 +77,7 @@ test('multi byte string <--> Buffer', function (t) {
 });
 
 test('base64url <--> ArrayBuffer', function (t) {
-  const b64u = 'eyJjaGFsbGVuZ2UiOiJ1Vlg4OElnUmEwU1NyTUlSVF9xN2NSY2RmZ2ZSQnhDZ25fcGtwVUFuWEpLMnpPYjMwN3dkMU9MWFEwQXVOYU10QlIzYW1rNkhZenAtX1Z4SlRQcHdHdyIsIm9yaWdpbiI6Imh0dHBzOi8vd2ViYXV0aG4ub3JnIiwidG9rZW5CaW5kaW5nIjp7InN0YXR1cyI6Im5vdC1zdXBwb3J0ZWQifSwidHlwZSI6IndlYmF1dGhuLmNyZWF0ZSJ9';
+  const b64u = '5aSn5bO244Gu6YeO5aKX5p2R44Gr44Gv44K344OE44OK56We44Go44GE44G15aWz6auU44Gu56We44GM44GC44Gk44Gm44CB6L-R44GE6aCD44G-44Gn44KC56iA44Gr44Gv55S344KS5ZGq44G15aWz44GM56WI6aGY44KS44GL44GR44Gf44Go44GE44G16Kmx44KS6IG944GE44Gf44GM44CB5pys55W244Gu44GT44Go44Gn44GC44KJ44GG44GL44CC';
   const ab = str2ab.base64url2arraybuffer(b64u);
   t.type(ab, 'ArrayBuffer');
   const b64u2 = str2ab.arraybuffer2base64url(ab);
@@ -66,10 +86,29 @@ test('base64url <--> ArrayBuffer', function (t) {
 });
 
 test('base64url <--> Buffer', function (t) {
-  const b64u = 'eyJjaGFsbGVuZ2UiOiJ1Vlg4OElnUmEwU1NyTUlSVF9xN2NSY2RmZ2ZSQnhDZ25fcGtwVUFuWEpLMnpPYjMwN3dkMU9MWFEwQXVOYU10QlIzYW1rNkhZenAtX1Z4SlRQcHdHdyIsIm9yaWdpbiI6Imh0dHBzOi8vd2ViYXV0aG4ub3JnIiwidG9rZW5CaW5kaW5nIjp7InN0YXR1cyI6Im5vdC1zdXBwb3J0ZWQifSwidHlwZSI6IndlYmF1dGhuLmNyZWF0ZSJ9';
+  const b64u = '5aSn5bO244Gu6YeO5aKX5p2R44Gr44Gv44K344OE44OK56We44Go44GE44G15aWz6auU44Gu56We44GM44GC44Gk44Gm44CB6L-R44GE6aCD44G-44Gn44KC56iA44Gr44Gv55S344KS5ZGq44G15aWz44GM56WI6aGY44KS44GL44GR44Gf44Go44GE44G16Kmx44KS6IG944GE44Gf44GM44CB5pys55W244Gu44GT44Go44Gn44GC44KJ44GG44GL44CC';
   const ab = str2ab.base64url2buffer(b64u);
   t.type(ab, 'Buffer');
   const b64u2 = str2ab.buffer2base64url(ab);
+  t.equal(b64u2, b64u);
+  t.end();
+});
+
+test('base64url <--> string', function (t) {
+  const b64u = '5aSn5bO244Gu6YeO5aKX5p2R44Gr44Gv44K344OE44OK56We44Go44GE44G15aWz6auU44Gu56We44GM44GC44Gk44Gm44CB6L-R44GE6aCD44G-44Gn44KC56iA44Gr44Gv55S344KS5ZGq44G15aWz44GM56WI6aGY44KS44GL44GR44Gf44Go44GE44G16Kmx44KS6IG944GE44Gf44GM44CB5pys55W244Gu44GT44Go44Gn44GC44KJ44GG44GL44CC';
+  const str = str2ab.base64url2string(b64u);
+  t.type(str, 'string');
+  const b64u2 = str2ab.string2base64url(str);
+  t.equal(b64u2, b64u);
+  t.end();
+});
+
+test('base64url <--> base64', function (t) {
+  const b64u = '5aSn5bO244Gu6YeO5aKX5p2R44Gr44Gv44K344OE44OK56We44Go44GE44G15aWz6auU44Gu56We44GM44GC44Gk44Gm44CB6L-R44GE6aCD44G-44Gn44KC56iA44Gr44Gv55S344KS5ZGq44G15aWz44GM56WI6aGY44KS44GL44GR44Gf44Go44GE44G16Kmx44KS6IG944GE44Gf44GM44CB5pys55W244Gu44GT44Go44Gn44GC44KJ44GG44GL44CC';
+  const b64 = str2ab.base64url2base64(b64u);
+  t.type(b64, 'string');
+  t.ok(/^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$/.test(b64))
+  const b64u2 = str2ab.base642base64url(b64);
   t.equal(b64u2, b64u);
   t.end();
 });
@@ -122,11 +161,86 @@ test('base64 <--> Buffer', function (t) {
   t.end();
 });
 
+test('base64 <--> string', function (t) {
+  const b64 = 'QmVpbmcgc2Vjb25kIGlzIHRvIGJlIHRoZSBmaXJzdCBvZiB0aGUgb25lcyB3aG8gbG9zZQ==';
+  const str = str2ab.base642string(b64);
+  t.type(str, 'string');
+  const b642 = str2ab.string2base64(str);
+  t.equal(b642, b64);
+  t.end();
+});
+
+test('base64 <--> base64url', function (t) {
+  const b64 = 'QmVpbmcgc2Vjb25kIGlzIHRvIGJlIHRoZSBmaXJzdCBvZiB0aGUgb25lcyB3aG8gbG9zZQ==';
+  const b64u = str2ab.base642base64url(b64);
+  t.type(b64u, 'string');
+  t.ok(/^[A-Za-z0-9-_]*$/.test(b64u))
+  const b642 = str2ab.base64url2base64(b64u);
+  t.equal(b642, b64);
+  t.end();
+});
+
 test('Buffer <--> ArrayBuffer', function (t) {
   const buf = base64url.toBuffer('Being second is to be the first of the ones who lose.');
   const ab = str2ab.buffer2arraybuffer(buf);
   t.type(ab, 'ArrayBuffer');
   const buf2 = str2ab.arraybuffer2buffer(ab);
   t.same(buf2, buf);
+  t.end();
+});
+
+test('isBase64url', function (t) {
+  t.test('Base64URL', function (t) {
+    const input = '5aSn5bO244Gu6YeO5aKX5p2R44Gr44Gv44K344OE44OK56We44Go44GE44G15aWz6auU44Gu56We44GM44GC44Gk44Gm44CB6L-R44GE6aCD44G-44Gn44KC56iA44Gr44Gv55S344KS5ZGq44G15aWz44GM56WI6aGY44KS44GL44GR44Gf44Go44GE44G16Kmx44KS6IG944GE44Gf44GM44CB5pys55W244Gu44GT44Go44Gn44GC44KJ44GG44GL44CC';
+    const result = str2ab.isBase64url(input);
+
+    t.ok(result);
+    t.end();
+  });
+
+  t.test('Base64', function (t) {
+    const input = 'QmVpbmcgc2Vjb25kIGlzIHRvIGJlIHRoZSBmaXJzdCBvZiB0aGUgb25lcyB3aG8gbG9zZQ==';
+    const result = str2ab.isBase64url(input);
+
+    t.notOk(result);
+    t.end();
+  });
+
+  t.test('Not Base64URL', function (t) {
+    const input = 'Being second is to be the first of the ones who lose.';
+    const result = str2ab.isBase64url(input);
+
+    t.notOk(result);
+    t.end();
+  })
+
+  t.end();
+});
+
+test('isBase64', function (t) {
+  t.test('Base64URL', function (t) {
+    const input = '5aSn5bO244Gu6YeO5aKX5p2R44Gr44Gv44K344OE44OK56We44Go44GE44G15aWz6auU44Gu56We44GM44GC44Gk44Gm44CB6L-R44GE6aCD44G-44Gn44KC56iA44Gr44Gv55S344KS5ZGq44G15aWz44GM56WI6aGY44KS44GL44GR44Gf44Go44GE44G16Kmx44KS6IG944GE44Gf44GM44CB5pys55W244Gu44GT44Go44Gn44GC44KJ44GG44GL44CC';
+    const result = str2ab.isBase64(input);
+
+    t.notOk(result);
+    t.end();
+  });
+
+  t.test('Base64', function (t) {
+    const input = 'QmVpbmcgc2Vjb25kIGlzIHRvIGJlIHRoZSBmaXJzdCBvZiB0aGUgb25lcyB3aG8gbG9zZQ==';
+    const result = str2ab.isBase64(input);
+
+    t.ok(result);
+    t.end();
+  });
+
+  t.test('Not Base64', function (t) {
+    const input = 'Being second is to be the first of the ones who lose.';
+    const result = str2ab.isBase64(input);
+
+    t.notOk(result);
+    t.end();
+  })
+
   t.end();
 });
