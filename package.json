@@ -17,6 +17,7 @@
   "keywords": [
     "string",
     "ArrayBuffer",
+    "base64",
     "base64url",
     "buffer"
   ],
