@@ -1,7 +1,7 @@
 {
   "name": "str2ab",
   "version": "1.2.0",
-  "description": "",
+  "description": "Convert between string (including base64 and base64url), ArrayBuffer and Buffer.",
   "main": "index.js",
   "types": "./dist/str2ab.d.ts",
   "files": [
